@@ -12,7 +12,8 @@ phases:
   post_build:
     commands:
       - docker push $REPOSITORY:$IMAGE_TAG
-      - printf '{"Image":"%s:%s"}' $REPOSITORY $IMAGE_TAG > build.json
+#      - printf '{"Image":"%s:%s"}' $REPOSITORY $IMAGE_TAG > build.json
+      - printf '[{"name":"noodles-container-automated","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > build.json
 artifacts:
   files:
     - build.json
