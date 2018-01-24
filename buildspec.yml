@@ -5,7 +5,7 @@ phases:
     commands:
       - $(aws ecr get-login)
       - IMAGE_TAG=$CODEBUILD_SOURCE_VERSION
-      - echo "IMAGE_TAG IS" IMAGE_TAG	
+      - echo "IMAGE_TAG IS" $IMAGE_TAG	
   build:
     commands:
       - docker build -t mynoodles-repo .
