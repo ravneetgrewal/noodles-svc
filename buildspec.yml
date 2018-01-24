@@ -4,16 +4,16 @@ phases:
   pre_build:
     commands:
       - $(aws ecr get-login)
-      - TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - printf "%s" $TAG	
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - printf "%s" $IMAGE_TAG	
   build:
     commands:
       - docker build -t mynoodles-repo .
-      - docker tag mynoodles-repo:latest $REPOSITORY:$TAG
+      - docker tag mynoodles-repo:latest $REPOSITORY:$IMAGE_TAG
   post_build:
     commands:
-      - docker push ${REPOSITORY}:${TAG}
-      - printf '{"Image":"%s:%s"}' $RESPOSITORY $TAG > build.json
+      - docker push $REPOSITORY:$IMAGE_TAG
+      - printf '{"Image":"%s:%s"}' $RESPOSITORY $IMAGE_TAG > build.json
 artifacts:
   files:
     - build.json
