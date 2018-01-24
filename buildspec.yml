@@ -8,10 +8,11 @@ phases:
       - printf "%s" $TAG	
   build:
     commands:
-      - docker build --tag "${REPOSITORY}:${TAG}" .
+      - docker build -t mynoodles-repo .
+      - docker tag mynoodles-repo:latest $REPOSITORY:$TAG
   post_build:
     commands:
-      - docker push "${REPOSITORY}:${TAG}"
+      - docker push ${REPOSITORY}:${TAG}
       - printf '{"Image":"%s:%s"}' $RESPOSITORY $TAG > build.json
 artifacts:
   files:
