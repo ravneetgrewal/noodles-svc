@@ -4,7 +4,7 @@ phases:
   pre_build:
     commands:
       - $(aws ecr get-login)
-      - IMAGE_TAG=$CODEBUILD_SOURCE_VERSION
+      - IMAGE_TAG=$CODEBUILD_RESOLVED_SOURCE_VERSION
       - echo "IMAGE_TAG IS" $IMAGE_TAG	
   build:
     commands:
