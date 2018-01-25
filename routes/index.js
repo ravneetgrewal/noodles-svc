@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
 //  res.render('index', { title: 'Express' });
     var dateTime = Date.now();
-    res.json({MyNoodles: "The Noodles are timstamped - " + dateTime});
+    res.json({MyNoodles: "Lets see Noodles are timstamped or not - " + dateTime});
 });
 
 module.exports = router;
